@@ -12,7 +12,7 @@
 <h1>POKEDEX - PHP STYLE</h1>
 
 <form action="">
-    <input type="text" name="pokemon">
+    <input type="text" name="search">
     <button type="submit">Search POKéDEX</button>
 </form>
 
