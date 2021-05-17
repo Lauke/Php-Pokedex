@@ -1,25 +1,26 @@
-<?php
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POKEDEX-PHP STYLE</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<h1>POKEDEX - PHP STYLE</h1>
 
-$api_url = 'https://pokeapi.co/api/v2/pokemon';
+<form action="">
+    <input type="text" name="pokemon">
+    <button type="submit">Search POKéDEX</button>
+</form>
 
-// Read JSON file
-$json_data = file_get_contents($api_url);
+<section id="pokemon-stats">
+    <?php
+        require 'pokedex.php'
+    ?>
+</section>
 
-// Decode JSON data into PHP array
-$response_data = json_decode($json_data);
-
-// All user data exists in 'results' object
-$pokemon_data = $response_data->results;
-
-// Print data if need to debug
-// print_r($pokemon_data);
-
-// Traverse array and display user data
-foreach ($pokemon_data as $pokemon) {
-	echo "name: ".$pokemon->name;
-	echo "<br />";
-	echo "name: ".$pokemon->url;
-	echo "<br /> <br />";
-}
-
-?>
+</body>
+</html>
