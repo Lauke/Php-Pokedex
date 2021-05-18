@@ -1,10 +1,12 @@
 <?php
 
-if (isset($_GET['search'])) {
+//ERROR REPORT
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
+if (!empty($_GET['search'])) {
     // ADDED A CHANGE TO LOWER CASE FUNCTION TO AVOID ERRORS WHEN USING CAPS
     $_GET['search'] = strtolower($_GET['search']);
-
     $api_url = 'https://pokeapi.co/api/v2/pokemon/' . $_GET['search'];
 
     // Read JSON file
@@ -24,7 +26,7 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
     // print_r($pokemon_data);
 
     // DECLARING THE VARIABLES
-    $pokemon_name = $pokemon_data['name'];
+    $pokemon_name = ucfirst($pokemon_data['name']);
     $pokemon_id = $pokemon_data['id'];
     $pokemon_image = $pokemon_data['sprites']['front_default'];
     $pokemon_moves = array_slice($pokemon_data['moves'], 0, 4);
@@ -32,8 +34,11 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
     $pokemon_move2 = $pokemon_moves[1]['move']['name'];
     $pokemon_move3 = $pokemon_moves[2]['move']['name'];
     $pokemon_move4 = $pokemon_moves[3]['move']['name'];
+    $pokemon_weight = $pokemon_data['weight'] / 10;
+    $pokemon_height = $pokemon_data['height'] * 10;
 
     // FETCHING A SECOND API FOR THE EVOLUTIONS
+
 
     $pokespecies_url = 'https://pokeapi.co/api/v2/pokemon-species/' . $_GET['search'];
     $pokespeciesData = file_get_contents($pokespecies_url);
@@ -56,35 +61,98 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
 </head>
 
 <body>
+
     <!-- BEGIN CONTAINER -->
-    <div class="container text-center">
+    <div class="container">
+        <div class="row">
+            <div class="row wrapper">
+                <div class="col-lg-12 rounded-search searchpoke">
+                    <div class="div search">
+                        <form action="">
+                            <input type="text" name="search" class="rounded-pill form-input">
+                            <button type="submit" class="btn rounded-pill btn-searchpoke">Search pokemon</button>
+                        </form>
 
-        <form action="">
-            <input type="text" name="search">
-            <button type="submit" class="btn btn-primary">Search pokemon</button>
-        </form>
+                        <?php
+                        if (!empty($_GET['search'])) :
+                        ?>
+                    </div>
+                </div>
 
-        <?php
-        if (isset($_GET['search'])) :
-        ?>
+                <div class="col-lg-6">
+                    <div class="p-3 roundy">
+                        <?php echo "#" . $pokemon_id ; ?>
+                    </div>
+                </div>
 
-            <?php
-            if ($pokemon_evolutions['evolves_from_species'] === null) {
-                echo 'This pokemon has no previous form';
-            } else {
-                echo 'This pokemon evolves in ' . $pokemon_evolutions['evolves_from_species']['name'];
-            } ?> <br>
-            <?php echo $pokemon_name ?><br>
-            <?php echo $pokemon_id ?><br>
-            <?php echo "<img src='" . $pokemon_image . "'>"; ?><br>
-            <?php echo $pokemon_move1 ?><br>
-            <?php echo $pokemon_move2 ?><br>
-            <?php echo $pokemon_move3 ?><br>
-            <?php echo $pokemon_move4 ?><br>
+                <div class="col-lg-6">
+                    <div class="p-3 roundy">
+                        <?php echo $pokemon_name ?>
+                    </div>
+                </div>
 
-        <?php else :
-            echo 'Search a pokemon';
-        endif; ?>
+                <div class="col-lg-12">
+                    <div class="image-background">
+                        <?php echo "<img src='" . $pokemon_image . "'>"; ?>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="p-3 roundy">
+                        <?php echo "Weight: " . $pokemon_weight  . "kg"; ?></div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="p-3 roundy">
+                        <?php echo "Height: " . $pokemon_height  . "cm"; ?></div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="p-3 roundy">
+                        <?php
+                            if ($pokemon_evolutions['evolves_from_species'] === null) {
+                                echo 'This pokemon has no previous form';
+                            } else {
+                                echo 'This pokemon evolves from ' . $pokemon_evolutions['evolves_from_species']['name'];
+                            } ?>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="rounded-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="4">Moves</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><?php echo $pokemon_move1 ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td><?php echo $pokemon_move2 ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td><?php echo $pokemon_move3 ?></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td><?php echo $pokemon_move4 ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <?php else :
+                            echo '<div class="roundy">Search a pokemon by name or by ID</div>';
+                        endif; ?>
 
     </div>
     <!-- END CONTAINER -->
