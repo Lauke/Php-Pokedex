@@ -27,3 +27,14 @@
 
 ### 18.05.21
 - Working on css
+- Played around with php classes but not yet sufficient enough to meet the deadline
+- Added an error report syntax
+- Had some struggles with finding the right structure between html/php in order not to break the php code
+- Learned some basic syntaxes on how to echo div's, `ucfirst` syntax, some basic calculation syntax
+- Tried to write as clean as possible bootstrap framework, learned about gutters & how to use them
+
+### Compability
+- [x] Firefox
+- [x] Chome
+- [x] Safari
+- [x] Edge
