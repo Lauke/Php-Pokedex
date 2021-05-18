@@ -22,9 +22,6 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
     // All user data exists in array
     $pokemon_data = $response_data;
 
-    // Print data if need to debug
-    // print_r($pokemon_data);
-
     // DECLARING THE VARIABLES
     $pokemon_name = ucfirst($pokemon_data['name']);
     $pokemon_id = $pokemon_data['id'];
@@ -38,7 +35,6 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
     $pokemon_height = $pokemon_data['height'] * 10;
 
     // FETCHING A SECOND API FOR THE EVOLUTIONS
-
 
     $pokespecies_url = 'https://pokeapi.co/api/v2/pokemon-species/' . $_GET['search'];
     $pokespeciesData = file_get_contents($pokespecies_url);
@@ -65,7 +61,7 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
     <!-- BEGIN CONTAINER -->
     <div class="container">
         <div class="row">
-            <div class="row wrapper">
+            <div class="row g-2 wrapper">
                 <div class="col-lg-12 rounded-search searchpoke">
                     <div class="div search">
                         <form action="">
@@ -80,13 +76,13 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="p-3 roundy">
-                        <?php echo "#" . $pokemon_id ; ?>
+                    <div class="roundy">
+                        <?php echo "#" . $pokemon_id; ?>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="p-3 roundy">
+                    <div class="roundy">
                         <?php echo $pokemon_name ?>
                     </div>
                 </div>
@@ -98,17 +94,17 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="p-3 roundy">
+                    <div class="roundy">
                         <?php echo "Weight: " . $pokemon_weight  . "kg"; ?></div>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="p-3 roundy">
+                    <div class="roundy">
                         <?php echo "Height: " . $pokemon_height  . "cm"; ?></div>
                 </div>
 
                 <div class="col-lg-12">
-                    <div class="p-3 roundy">
+                    <div class="roundy">
                         <?php
                             if ($pokemon_evolutions['evolves_from_species'] === null) {
                                 echo 'This pokemon has no previous form';
