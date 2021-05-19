@@ -35,16 +35,13 @@
 
 ### 19.05.21
 - Checked all tutorials on OOP by Dani Krossing @youtube and trying to implement this on the project
+- Learned about Php classes, constructors, access modifiers, getters-setters, inheritance
+- Implemented OOP and added used documentation in the documentation folder
+- One small minor bug needs to be fixed (array = null when there is no evolution)
+- Still looking for a more convenient way of showing moves (answer: shuffle, but not implemented yet)
 
 ### Compability
 - [x] Firefox
 - [x] Chome
 - [x] Safari
 - [x] Edge
-
-
-### Some extra's
-- [ ] Next & Previous buttons
-- [ ] Change gradient background based on type
-- [ ] Add extra info
-- [ ] API Encouters
