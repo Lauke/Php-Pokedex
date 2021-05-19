@@ -33,6 +33,9 @@
 - Learned some basic syntaxes on how to echo div's, `ucfirst` syntax, some basic calculation syntax
 - Tried to write as clean as possible bootstrap framework, learned about gutters & how to use them
 
+### 19.05.21
+- Checked all tutorials on OOP by Dani Krossing @youtube and trying to implement this on the project
+
 ### Compability
 - [x] Firefox
 - [x] Chome
@@ -42,6 +45,6 @@
 
 ### Some extra's
 - [ ] Next & Previous buttons
-- [ ] Gradient background based on type
+- [ ] Change gradient background based on type
 - [ ] Add extra info
 - [ ] API Encouters
