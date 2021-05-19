@@ -38,3 +38,10 @@
 - [x] Chome
 - [x] Safari
 - [x] Edge
+
+
+### Some extra's
+- [ ] Next & Previous buttons
+- [ ] Gradient background based on type
+- [ ] Add extra info
+- [ ] API Encouters
