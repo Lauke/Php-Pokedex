@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 // ADDED A CHANGE TO LOWER CASE FUNCTION TO AVOID ERRORS WHEN USING CAPS
-if (isset($_GET['search'])) {
+if (!empty($_GET['search'])) {
 
     $_GET['search'] = strtolower($_GET['search']);
     $api_url = 'https://pokeapi.co/api/v2/pokemon/' . $_GET['search'];
@@ -73,7 +73,7 @@ as associative arrays or objects depending on whether JSON_OBJECT_AS_ARRAY is se
                             <button type="submit" class="btn rounded-pill btn-searchpoke">Search pokemon</button>
                         </form>
                         <?php
-                        if (isset($_GET['search'])) :
+                        if (!empty($_GET['search'])) :
                         ?>
                     </div>
                 </div>
